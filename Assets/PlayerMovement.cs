@@ -9,6 +9,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float jumpSpeed;
+
+    [SerializeField]
+    float rotSpeed = 1;
+
+    [SerializeField]
+    Transform cam;
+
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +28,24 @@ public class PlayerMovement : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Mouse X");
 
-       
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
 
-        rb.velocity = new Vector3(h * moveSpeed,
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        transform.Rotate(new Vector3(0, x * rotSpeed, 0));
+
+        Vector3 moveDirection = (camForward * v * moveSpeed) + (camRight * h * moveSpeed);
+        rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
+        
+        /*new Vector3(h * moveSpeed,
                                   rb.velocity.y,
-                                   v * moveSpeed);
+                                   v * moveSpeed);*/
 
         if (Input.GetButtonDown("Jump"))
         {
