@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int score = 0;
-
+    public int goalScore = 3;
     [SerializeField]
     Text scoreText;
 
@@ -45,6 +46,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        if (score == goalScore)
+        {
+            SceneManager.LoadScene(0);
+        }
 
     }
     public bool ConsumeAmmo()
