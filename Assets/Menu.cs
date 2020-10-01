@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
 {
     public Text buttonText;
     public Button myButton;
+    public int index;
    
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,11 @@ public class Menu : MonoBehaviour
 
     public void GoToScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(index);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

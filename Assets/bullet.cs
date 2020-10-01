@@ -24,4 +24,14 @@ public class bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Target")
+        {
+            GameManager.instance.score++;
+            Destroy(other.gameObject);
+
+        }
+    }
 }

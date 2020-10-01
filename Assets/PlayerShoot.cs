@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
+    private GameManager gameManager;
     [SerializeField]
     GameObject bullet;
 
@@ -15,35 +16,47 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     Transform gunBarrel;
 
-    [SerializeField]
-    Image bar;
-    int ammo = 20;
+    /*[SerializeField]
+    Image bar;*/
+
+    //[SerializeField]
+    //Text ammoDisplay; 
+
+
+    public int ammo = 20;
     // Start is called before the first frame update
     void Start()
     {
-        updateHUD();
+        gameManager = GameManager.instance;
+        //updateHUD();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        
         if(Input.GetButtonDown("Fire1"))
         {
             Vector3 bulletDirection = transform.forward * bulletSpeed;
 
-            if (ammo > 0)
+            if (gameManager.ammunitionCount > 0)
             {
                 GameObject b = Instantiate(bullet, gunBarrel.position, transform.rotation);
                 b.GetComponent<Rigidbody>().velocity = bulletDirection;
 
-                ammo -= 1;
-                updateHUD();
+                GameManager.instance.ammunitionCount -= 1;
+                //updateHUD();
             }
         }
     }
 
-    void updateHUD()
+    /*void updateHUD()
     {
-        bar.fillAmount = (float)ammo / 20;
-    }
+        ammoDisplay.text = "Ammo: " + ammo.ToString();
+        //bar.fillAmount = (float)ammo / 20;
+    }*/
+
+   
+
 }

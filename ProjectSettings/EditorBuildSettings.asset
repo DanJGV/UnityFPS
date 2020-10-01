@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FPS_Map.unity
     guid: 01abedcd2b22d3a408b7ba188117b8b8
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 6088c8cf9a05dfc42b8d30b0f861f4f8
   m_configObjects: {}

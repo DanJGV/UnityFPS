@@ -26,9 +26,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Ray r = new Ray(transform.position, Vector3.down);
+        Debug.DrawLine(r.origin, r.origin + (Vector3.down * 10));
+        RaycastHit hit;
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         float x = Input.GetAxis("Mouse X");
+
+        
 
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
@@ -42,14 +48,22 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = (camForward * v * moveSpeed) + (camRight * h * moveSpeed);
         rb.velocity = new Vector3(moveDirection.x, rb.velocity.y, moveDirection.z);
-        
+
         /*new Vector3(h * moveSpeed,
                                   rb.velocity.y,
                                    v * moveSpeed);*/
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if (Physics.Raycast(r, out hit, 1))
+            {
+              
+                    Jump();
+
+            }
+
+          
+
         }
 
     }
@@ -59,5 +73,7 @@ public class PlayerMovement : MonoBehaviour
                                   jumpSpeed,
                                   rb.velocity.z);
     }
+
+   
 
 }
