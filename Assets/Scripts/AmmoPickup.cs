@@ -22,7 +22,7 @@ public class AmmoPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerShoot>() != null)
+        if (other.gameObject.name == "Player")
         {
             GameManager.instance.addAmmo(ammoCount);
             Destroy(gameObject);

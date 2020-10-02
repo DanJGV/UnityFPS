@@ -16,14 +16,14 @@ public class DmgCollision : MonoBehaviour
     {
         
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == "DmgObject")
         {
             if(bar)
             {
-                bar.onTakeDamage(10);
+                bar.onTakeDamage(1);
             }
         }
     }

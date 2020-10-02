@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     Transform cam;
-
+    [SerializeField]
+    int goToLevel = 0;
+    [SerializeField]
+    int goalScore = 0;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -64,6 +68,13 @@ public class PlayerMovement : MonoBehaviour
 
           
 
+        }
+
+        if (GameManager.instance.score == goalScore)
+        {
+            SceneManager.LoadScene(goToLevel);
+            GameManager.instance.score = 0;
+            
         }
 
     }

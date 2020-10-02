@@ -24,12 +24,8 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GameManager.instance.score == goalScore)
-        {
-            SceneManager.LoadScene(goToLevel);
-            GameManager.instance.score = 0;
-
-        }
+        if(other.gameObject.name == "Player")
+        SceneManager.LoadScene(goToLevel);
     }
     private void OnCollisionEnter(Collision collision)
     {

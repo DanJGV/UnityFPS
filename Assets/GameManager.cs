@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -46,10 +46,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        if (score == goalScore)
-        {
-            SceneManager.LoadScene(0);
-        }
+      
 
     }
     public bool ConsumeAmmo()
